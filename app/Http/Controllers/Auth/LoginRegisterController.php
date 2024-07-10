@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class LoginRegisterController extends Controller
 {
@@ -119,6 +120,7 @@ class LoginRegisterController extends Controller
      */
     public function logout(Request $request)
     {
+        Session::flush();
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
