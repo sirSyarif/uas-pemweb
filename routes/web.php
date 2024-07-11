@@ -6,6 +6,7 @@ use App\Http\Controllers\JournalsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\GuestController;
 
 
 /*
@@ -32,6 +33,7 @@ Route::controller(LoginRegisterController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout');
 });
 
+Route::get('/', [GuestController::class, 'index'])->name('welcome');
 Route::resource('journals', JournalsController::class);
 Route::resource('categories', CategoriesController::class);
 Route::resource('tags', TagsController::class);

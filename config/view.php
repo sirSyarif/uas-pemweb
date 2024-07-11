@@ -33,4 +33,18 @@ return [
         realpath(storage_path('framework/views'))
     ),
 
+    'pagination' => 'pagination.custom', // <--- Custom pagination view
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pagination Theme
+    |--------------------------------------------------------------------------
+    |
+    | This theme will be used to render the pagination links when
+    | pagination is enabled for a given list of items.
+    |
+    */
+
+    'theme' => 'default',
+
 ];

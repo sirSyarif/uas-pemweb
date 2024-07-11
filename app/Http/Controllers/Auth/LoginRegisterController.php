@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Journal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -103,7 +104,10 @@ class LoginRegisterController extends Controller
     {
         if(Auth::check())
         {
-            return view('auth.dashboard');
+            $user_id = Auth::user()->id;
+        
+            $journals = Journal::where('user_id', $user_id)->get();
+            return view('auth.dashboard', ['journals'=>$journals]);
         }
         
         return redirect()->route('login')
