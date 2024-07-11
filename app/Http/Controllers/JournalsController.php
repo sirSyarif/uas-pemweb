@@ -20,7 +20,10 @@ class JournalsController extends Controller
      */
     public function index()
     {
-        $journals= Journal::all();
+
+		$user_id = Auth::user()->id;
+        
+        $journals = Journal::where('user_id', $user_id)->get();
         return view('journals.index', ['journals'=>$journals]);
     }
 

@@ -34,7 +34,7 @@
 			{{ Form::label('category_id', 'Category', ['class'=>'form-label']) }}
             {{ Form::select('category_id', $categories, null, ['class' => 'form-control mb-3']) }}
 			{{ Form::label('tag_ids[]', 'Tags', ['class'=>'form-label']) }}
-            {{ Form::select('tag_ids[]', $tags, null, ['class' => 'form-control mb-3', 'multiple' => true]) }}
+            {{ Form::select('tag_ids[]', $tags, $journal->tags->pluck('id'), ['class' => 'form-control mb-3', 'multiple' => true]) }}
 			{{ Form::label('file', 'File', ['class'=>'form-label']) }}
             {{ Form::file('file', ['class' => 'form-control', 'accept' => 'pdf']) }}
 		</div>
