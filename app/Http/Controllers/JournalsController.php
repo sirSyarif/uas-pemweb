@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\JournalRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class JournalsController extends Controller
 {
@@ -47,8 +48,17 @@ class JournalsController extends Controller
         $path = $file->store('uploads', 'public');
 
         $journal = new Journal;
-		$journal->name = $request->input('name');
+		$journal->title = $request->input('title');
+		$journal->author = $request->input('author');
+		$journal->publication_date = $request->input('publication_date');
+		$journal->journal = $request->input('journal');
+		$journal->volume = $request->input('volume');
+		$journal->issue = $request->input('issue');
+		$journal->page = $request->input('page');
+		$journal->abstract = $request->input('abstract');
+		$journal->publisher = $request->input('publisher');
 		$journal->category_id = $request->input('category_id');
+		$journal->user_id = Auth::user()->id;
         $journal->path = $path;
         $journal->save();
 
@@ -78,7 +88,9 @@ class JournalsController extends Controller
     public function edit($id)
     {
         $journal = Journal::findOrFail($id);
-        return view('journals.edit',['journal'=>$journal]);
+        $categories = Category::all()->pluck('name', 'id');
+        $tags = Tag::all()->pluck('name', 'id');
+        return view('journals.edit',compact('journal', 'categories', 'tags'));
     }
 
     /**
@@ -90,10 +102,27 @@ class JournalsController extends Controller
      */
     public function update(JournalRequest $request, $id)
     {
+
+		$file = $request->file('file');
+        $path = $file->store('uploads', 'public');
+
         $journal = Journal::findOrFail($id);
-		$journal->name = $request->input('name');
+
+		$journal->title = $request->input('title');
+		$journal->author = $request->input('author');
+		$journal->publication_date = $request->input('publication_date');
+		$journal->journal = $request->input('journal');
+		$journal->volume = $request->input('volume');
+		$journal->issue = $request->input('issue');
+		$journal->page = $request->input('page');
+		$journal->abstract = $request->input('abstract');
+		$journal->publisher = $request->input('publisher');
+		$journal->category_id = $request->input('category_id');
+		$journal->user_id = Auth::user()->id;
+        $journal->path = $path;
         $journal->save();
 
+        $journal->tags()->sync($request->input('tag_ids'));
         return to_route('journals.index');
     }
 

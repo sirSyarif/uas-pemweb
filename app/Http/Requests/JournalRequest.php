@@ -25,9 +25,12 @@ class JournalRequest extends FormRequest
     {
         return
         [
-			'name' => 'required',
+            'title' => 'required',
+            'author' => 'required',
+            'publication_date' => 'required',
+            'abstract' => 'required',
             'category_id' => 'required',
-            'file' => 'required|mimes:pdf',
+            // 'file' => 'required|mimes:pdf',
         ];
     }
 }

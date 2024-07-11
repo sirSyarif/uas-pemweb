@@ -18,11 +18,10 @@
 
 				<tr>
 					<td>{{ $journal->id }}</td>
-					<td>{{ $journal->name }}</td>
+					<td>{{ $journal->title }}</td>
 
 					<td>
 						<div class="d-flex gap-2">
-                            <a href="{{ route('journals.show', [$journal->id]) }}" class="btn btn-info">Show</a>
                             <a href="{{ route('journals.edit', [$journal->id]) }}" class="btn btn-primary">Edit</a>
                             {!! Form::open(['method' => 'DELETE','route' => ['journals.destroy', $journal->id]]) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
