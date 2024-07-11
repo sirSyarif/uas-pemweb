@@ -1,9 +1,12 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\JournalsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\PublicationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(LoginRegisterController::class)->group(function() {
+Route::controller(LoginRegisterController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'login')->name('login');
@@ -32,3 +35,6 @@ Route::controller(LoginRegisterController::class)->group(function() {
 Route::resource('journals', JournalsController::class);
 Route::resource('categories', CategoriesController::class);
 Route::resource('tags', TagsController::class);
+Route::get('/datapublikasi', function () {
+    return view('datapublikasi');
+});
