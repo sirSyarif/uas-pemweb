@@ -24,11 +24,16 @@ class GuestController extends Controller
             $journals->where('category_id', $request->input('category'));
         }
 
-        $journals = $journals->paginate(1);
+        $journals = $journals->paginate(2);
 
         $categories = Category::all();
 
+        $citationTypes = [
+            'APA',
+            'MLA',
+            'Chicago',
+        ];
 
-        return view('welcome', compact('journals', 'categories'));
+        return view('welcome', compact('journals', 'categories', 'citationTypes'));
     }
 }
