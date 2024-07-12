@@ -53,8 +53,10 @@
                             value="{{ request()->input('title') }}" placeholder="Cari jurnal atau publikasi ilmiah..."
                             aria-label=".form-control-lg example">
                     </form>
-                    <button class="btn btn-primary mt-2" data-bs-toggle="offcanvas" data-bs-target="#filter-drawer"
-                        aria-controls="filter-drawer">Filter</button>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary mt-2" data-bs-toggle="offcanvas" data-bs-target="#filter-drawer"
+                            aria-controls="filter-drawer">Filter</button>
+                    </div>
                     <div class="card mt-3">
                         @foreach ($journals as $journal)
                             @if ($journal instanceof \App\Models\Journal)
@@ -74,24 +76,27 @@
                                             <span class="btn btn-sm btn-primary">{{ $tag->name }}</span>
                                         @endforeach
                                     </p>
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-sm btn-outline-secondary">Cite (99)</button>
-                                        <button class="btn btn-sm btn-outline-secondary">Share ↑</button>
+                                    <div class="text-right d-flex justify-content-end gap-2">
+                                        <button class="btn btn-sm btn-success">Cite<i
+                                                class="fas fa-quote-left"></i></button>
+                                        <button class="btn btn-sm btn-info">Share ↑ <i
+                                                class="fas fa-share-alt"></i></button>
+                                        <button class="btn btn-sm btn-danger">Download PDF <i
+                                                class="fas fa-file-pdf"></i></button>
                                     </div>
                                 </div>
+                            @endif
+                        @endforeach
+
+
                     </div>
-                    @endif
-                    @endforeach
 
 
                 </div>
 
 
             </div>
-
-
-        </div>
-        {{ $journals->links('vendor.pagination.custom') }}
+            {{ $journals->links('vendor.pagination.custom') }}
     </body>
 
     <script>
