@@ -62,9 +62,11 @@
                             value="{{ request()->input('title') }}" placeholder="Cari jurnal atau publikasi ilmiah..."
                             aria-label=".form-control-lg example">
                     </form>
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-end gap-2">
                         <button class="btn btn-primary mt-2" data-bs-toggle="offcanvas" data-bs-target="#filter-drawer"
                             aria-controls="filter-drawer">Filter</button>
+                        <a class="btn btn-primary mt-2" href="{{ route('export-to-csv') }}">Export to
+                            CSV</a>
                     </div>
                     @if ($journals->isEmpty())
                         <h2 class="text-center">Journal not found</h2>
@@ -95,8 +97,6 @@
                                                 data-journal-id="{{ $journal->id }}"
                                                 data-journal-data="{{ json_encode($journal) }}">Cite <i
                                                     class="fas fa-quote-left"></i></button>
-                                            <button class="btn btn-sm btn-info">Share <i
-                                                    class="fas fa-share-alt"></i></button>
                                             <button class="btn btn-sm btn-danger">Download PDF <i
                                                     class="fas fa-file-pdf"></i></button>
                                         </div>
