@@ -177,10 +177,6 @@
                     var citationTextarea = modalElement.querySelector('#citation-text');
                     citationTextarea.value = citationText;
 
-                    event.target.addEventListener('click', function() {
-                        bootstrap.Modal.getInstance(modalElement).hide();
-                    });
-
                     citationTypeSelect.addEventListener('change', function() {
                         var citationType = citationTypeSelect.value;
                         var citationText = generateCitationText(journalData, citationType);
@@ -189,7 +185,7 @@
 
                     var closeButton = modalElement.querySelector('#close-btn');
                     closeButton.addEventListener('click', function() {
-                        modalElement.querySelector('.modal').modal('hide');
+                        bootstrap.Modal.getInstance(modalElement).hide();
                     });
 
                     var copyButton = modalElement.querySelector('#copy-citation-btn');
@@ -211,7 +207,6 @@
                     return `${journalData.author}. " ${journalData.title}." ${journalData.publisher}, ${journalData.publication_date}.`;
                 case 'Chicago':
                     return `${journalData.author}. ${journalData.title}. ${journalData.publisher}, ${journalData.publication_date}.`;
-                    // Add more citation types as needed
                 default:
                     return '';
             }
