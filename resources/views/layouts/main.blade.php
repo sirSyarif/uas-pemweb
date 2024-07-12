@@ -80,7 +80,6 @@
                                 Journal
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{ route('journals.index') }}">List</a></li>
                                 <li><a class="dropdown-item" href="{{ route('journals.create') }}">Create</a></li>
                             </ul>
                         </li>
