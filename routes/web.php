@@ -35,6 +35,7 @@ Route::controller(LoginRegisterController::class)->group(function () {
 
 Route::get('/', [GuestController::class, 'index'])->name('welcome');
 Route::get('export-to-csv', [GuestController::class, 'exportToCsv'])->name('export-to-csv');
+Route::get('journals/{journal}/download-pdf', [GuestController::class, 'downloadPdf'])->name('download-pdf');
 Route::resource('journals', JournalsController::class);
 Route::resource('categories', CategoriesController::class);
 Route::resource('tags', TagsController::class);

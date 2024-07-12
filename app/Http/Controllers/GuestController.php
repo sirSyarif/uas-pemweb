@@ -6,6 +6,8 @@ use App\Models\Journal;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 
 class GuestController extends Controller
 {
@@ -89,5 +91,22 @@ class GuestController extends Controller
         $response->headers->set('Cache-Control', 'ax-age=0');
 
         return $response;
+    }
+
+    public function downloadPdf(Journal $journal)
+    {
+        $filePath = storage_path('app/public/' . $journal->path);
+        $fileName = $journal->title . '.pdf';
+
+        if (file_exists($filePath)) {
+            $headers = [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+            ];
+
+            return response()->download($filePath, $fileName, $headers);
+        } else {
+            return response()->json(['error' => 'File not found'], 404);
+        }
     }
 }

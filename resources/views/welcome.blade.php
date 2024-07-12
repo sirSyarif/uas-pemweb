@@ -97,8 +97,9 @@
                                                 data-journal-id="{{ $journal->id }}"
                                                 data-journal-data="{{ json_encode($journal) }}">Cite <i
                                                     class="fas fa-quote-left"></i></button>
-                                            <button class="btn btn-sm btn-danger">Download PDF <i
-                                                    class="fas fa-file-pdf"></i></button>
+                                            <a class="btn btn-sm btn-danger"
+                                                href="{{ route('download-pdf', $journal) }}">Download PDF <i
+                                                    class="fas fa-file-pdf"></i></a>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modal-{{ $journal->id }}" tabindex="-1" role="dialog"
