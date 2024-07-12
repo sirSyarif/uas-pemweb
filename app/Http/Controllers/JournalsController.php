@@ -67,7 +67,7 @@ class JournalsController extends Controller
 
         $journal->tags()->sync($request->input('tag_ids'));
 
-        return to_route('journals.index');
+        return to_route('dashboard');
     }
 
     /**
@@ -126,7 +126,7 @@ class JournalsController extends Controller
         $journal->save();
 
         $journal->tags()->sync($request->input('tag_ids'));
-        return to_route('journals.index');
+        return to_route('dashboard');
     }
 
     /**
@@ -140,6 +140,6 @@ class JournalsController extends Controller
         $journal = Journal::findOrFail($id);
         $journal->delete();
 
-        return to_route('journals.index');
+        return to_route('dashboard');
     }
 }

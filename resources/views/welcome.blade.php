@@ -63,7 +63,7 @@
                             aria-label=".form-control-lg example">
                     </form>
                     <div class="d-flex justify-content-end gap-2">
-                        <button class="btn btn-primary mt-2" data-bs-toggle="offcanvas" data-bs-target="#filter-drawer"
+                        <button class="btn btn-secondary mt-2" data-bs-toggle="offcanvas" data-bs-target="#filter-drawer"
                             aria-controls="filter-drawer">Filter</button>
                         <a class="btn btn-primary mt-2" href="{{ route('export-to-csv') }}">Export to
                             CSV</a>

@@ -12,7 +12,7 @@
             <div class="col-md-9">
                 <h2>Publications</h2>
                 <ul class="list-group">
-                    @foreach ($journals as $journal)
+                    @forelse ($journals as $journal)
                         <li class="list-group-item">
                             <h5>{{ $journal->title }}</h5>
                             <p>{{ $journal->author }}</p>
@@ -22,13 +22,16 @@
                             <div class="btn-group">
                                 <a href="{{ route('journals.edit', [$journal->id]) }}"
                                     class="btn btn-sm btn-secondary">Edit</a>
-                                <button class="btn btn-sm btn-primary">Download PDF</button>
+                                <a class="btn btn-sm btn-primary" href="{{ route('download-pdf', $journal) }}">Download PDF
+                                    <i class="fas fa-file-pdf"></i></a>
                                 {!! Form::open(['method' => 'DELETE', 'route' => ['journals.destroy', $journal->id]]) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-sm btn-danger']) !!}
                                 {!! Form::close() !!}
                             </div>
                         </li>
-                    @endforeach
+                    @empty
+                        <h2 class="text-center">Jurnal kosong</h2>
+                    @endforelse
                 </ul>
             </div>
         </div>
